@@ -1,2 +1,2 @@
 # fullStackOpenCourse
-Un bootcamp para aprender desarrollo web fullstack moderno
+A bootcamp for learning modern full-stack web development
