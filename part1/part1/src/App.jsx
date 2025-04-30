@@ -75,7 +75,7 @@ const App = () => {
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(0)
   //funcion para mostrar el número total de comentarios recopilados en 'good'
   const addGoodComment = () => {
     setGood(good + 1)
@@ -104,6 +104,17 @@ const App = () => {
     const randomNumber = Math.floor(Math.random() * anecdotes.length)
     setSelected(randomNumber)
    }
+   //Creamos el hook para guaradr el estado del nuevo array
+   const [votes, setVotes] = useState( new Array(anecdotes.length).fill(0));
+   const addVote = () => {
+    const copyVotes = [...votes];
+    copyVotes[selected] += 1;
+    setVotes(copyVotes);
+  }
+  //Funcion para encontrar la frase mas votada
+  const anecdoteFull = Math.max(...votes);
+  //encuentra el index en el arry
+  const getIndex = votes.indexOf(anecdoteFull)
 
   return (
     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
@@ -116,10 +127,13 @@ const App = () => {
     <Title title={'statistics'}/>
     <Statistics good={good} neutral={neutral} bad={bad}/>
       <p>{anecdotes[selected]}</p>
+      <p>has {votes[selected]} votes</p>
       <div style={{display: 'flex'}} >
-      <Button onClick={() => console.log('votado')} text={'vote'}/>
+      <Button onClick={addVote} text={'vote'}/>
       <Button onClick={randomAnecdote} text={'next anecdote'}/>
       </div>
+      <Title title={'Anecdote with most votes'}/>
+      <p>{anecdotes[getIndex]}</p>
     </div>
   )
 }
