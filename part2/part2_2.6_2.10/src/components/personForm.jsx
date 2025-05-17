@@ -1,4 +1,5 @@
 import React from "react";
+import personsServices from "../services/personsSV";
 
 const PersonForm = ({
   newName,
@@ -19,8 +20,12 @@ const PersonForm = ({
       return;
     }
     const addData = { name: newName, number: newNumber };
-    setPersons(persons.concat(addData));
-    setFormData((prev) => ({ ...prev, newName: "", newNumber: "" }));
+    personsServices.create(addData).then((response) => {
+      // console.log(response);
+      const savedPerson = response;
+      setPersons(persons.concat(savedPerson));
+      setFormData((prev) => ({ ...prev, newName: "", newNumber: "" }));
+    });
   };
 
   return (

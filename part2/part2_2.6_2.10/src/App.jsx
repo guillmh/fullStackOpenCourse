@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Persons from "./components/Persons";
 import PersonForm from "./components/personForm";
 import Filter from "./components/Filter";
-import axios from "axios";
+import personsServices from "./services/personsSV";
 
 const App = () => {
   //Maneja el estado para guardar nuevos numeros
@@ -10,8 +10,8 @@ const App = () => {
 
   //Hace una solicitud al servidor para obtener los datos
   useEffect(() => {
-    axios.get("http://localhost:3001/persons").then((response) => {
-      setPersons(response.data);
+    personsServices.getAll().then((response) => {
+      setPersons(response);
     });
   }, []);
 
@@ -28,7 +28,6 @@ const App = () => {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    // console.log(e.target.value);
   };
 
   return (
