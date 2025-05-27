@@ -13,17 +13,46 @@ const PersonForm = ({
   const addPerson = (e) => {
     e.preventDefault();
     //Verifica si el nombre ya existe en el array
-    const nameExists = persons.some((person) => person.name === newName);
-    //Condicion en caso de que sea true la existencia de un nombre igual
-    if (nameExists) {
-      alert(`${newName} is already added to phonebook`);
+    const existingPerson = persons.find((person) => person.name === newName);
+    // Si existe, pregunta si se desea actualizar el número
+    if (existingPerson) {
+      if (
+        window.confirm(
+          `${newName} is already  added to phonebook, replace the old number with a new one?`
+        )
+      ) {
+        // Actualiza el número del contacto existente
+        const updatedPerson = { ...existingPerson, number: newNumber };
+        personsServices
+          .updatePerson(existingPerson.id, updatedPerson)
+          .then((returnedPerson) => {
+            // Actualiza el estado local con el contacto actualizado
+            setPersons(
+              persons.map((p) =>
+                p.id !== existingPerson.id ? p : returnedPerson
+              )
+            );
+            // Limpia los campos del formulario
+            setFormData((prev) => ({
+              ...prev,
+              newName: "",
+              newNumber: "",
+            }));
+          })
+          .catch((error) => {
+            alert("Error updating contact");
+            throw error;
+          });
+      }
       return;
     }
+    // Si no existe, crea un nuevo contacto
     const addData = { name: newName, number: newNumber };
     personsServices.create(addData).then((response) => {
-      // console.log(response);
       const savedPerson = response;
+      // Agrega el nuevo contacto al estado local
       setPersons(persons.concat(savedPerson));
+      // Limpia los campos del formulario
       setFormData((prev) => ({ ...prev, newName: "", newNumber: "" }));
     });
   };

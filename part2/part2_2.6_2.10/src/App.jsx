@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Persons from "./components/Persons";
-import PersonForm from "./components/personForm";
+import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
 import personsServices from "./services/personsSV";
 
@@ -48,7 +48,7 @@ const App = () => {
         setFormData={setFormData}
       />
       <h3>Numbers</h3>
-      <Persons persons={persons} />
+      <Persons persons={persons} setPersons={setPersons} />
     </div>
   );
 };

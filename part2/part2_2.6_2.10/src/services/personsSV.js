@@ -30,5 +30,15 @@ const deletePerson = async (id) => {
     throw error;
   }
 };
+//Metodo para actualizar un contacto por id
+const updatePerson = async (id, updatedPerson) => {
+  try {
+    const response = await axios.put(`${baseUrl}/${id}`, updatedPerson);
+    return response.data;
+  } catch (error) {
+    console.log("Error updating data,", error);
+    throw error;
+  }
+};
 
-export default { getAll, create, deletePerson };
+export default { getAll, create, deletePerson, updatePerson };

@@ -1,13 +1,17 @@
 import React from "react";
-import ButtonDelete from "./buttonDelete";
+import ButtonDelete from "./ButtonDelete";
 
-const Persons = ({ persons }) => {
+const Persons = ({ persons, setPersons }) => {
   return (
     <div>
       {persons.map((person) => (
         <div key={person.id}>
           {person.name} {person.number}
-          <ButtonDelete person={person} />
+          <ButtonDelete
+            person={person}
+            persons={persons}
+            setPersons={setPersons}
+          />
         </div>
       ))}
     </div>
