@@ -8,6 +8,7 @@ const PersonForm = ({
   persons,
   setPersons,
   setFormData,
+  setSuccesMessage,
 }) => {
   //Agrega un nuevo nombre al estado
   const addPerson = (e) => {
@@ -38,6 +39,12 @@ const PersonForm = ({
               newName: "",
               newNumber: "",
             }));
+            // Muestra mensaje de éxito
+            setSuccesMessage(
+              `El contacto de ${returnedPerson.name} fue actualizado exitosamente.`
+            );
+            // Oculta el mensaje después de unos segundos
+            setTimeout(() => setSuccesMessage(null), 5000);
           })
           .catch((error) => {
             alert("Error updating contact");
@@ -52,6 +59,10 @@ const PersonForm = ({
       const savedPerson = response;
       // Agrega el nuevo contacto al estado local
       setPersons(persons.concat(savedPerson));
+      //Muestra una notificacionde operacion exitosa
+      setSuccesMessage(`El contacto ${response.name} se agrego exitosamente`);
+      // Oculta el mensaje después de unos segundos
+      setTimeout(() => setSuccesMessage(null), 5000);
       // Limpia los campos del formulario
       setFormData((prev) => ({ ...prev, newName: "", newNumber: "" }));
     });
