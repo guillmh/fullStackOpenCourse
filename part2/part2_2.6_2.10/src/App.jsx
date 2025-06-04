@@ -3,13 +3,15 @@ import Persons from "./components/Persons";
 import PersonForm from "./components/PersonForm";
 import Filter from "./components/Filter";
 import personsServices from "./services/personsSV";
-import SuccesMessage from "./components/SuccesMessage";
+import Notification from "./components/Notification";
 
 const App = () => {
   //Maneja el estado para guardar nuevos numeros
   const [persons, setPersons] = useState([]);
   //Maneja el estado del mensaje exitoso
   const [sucessMessage, setSuccesMessage] = useState(null);
+  //Maneja el estado de la notificacion
+  const [notificationType, setNotification] = useState("success");
 
   //Hace una solicitud al servidor para obtener los datos
   useEffect(() => {
@@ -36,7 +38,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <SuccesMessage message={sucessMessage} />
+      <Notification message={sucessMessage} type={notificationType} />
       <Filter
         searchName={formData.searchName}
         handleChange={handleChange}
@@ -51,9 +53,15 @@ const App = () => {
         setPersons={setPersons}
         setFormData={setFormData}
         setSuccesMessage={setSuccesMessage}
+        setNotification={setNotification}
       />
       <h3>Numbers</h3>
-      <Persons persons={persons} setPersons={setPersons} />
+      <Persons
+        persons={persons}
+        setPersons={setPersons}
+        setSuccesMessage={setSuccesMessage}
+        setNotification={setNotification}
+      />
     </div>
   );
 };

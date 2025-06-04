@@ -1,7 +1,12 @@
 import React from "react";
 import ButtonDelete from "./ButtonDelete";
 
-const Persons = ({ persons, setPersons }) => {
+const Persons = ({
+  persons,
+  setPersons,
+  setSuccesMessage,
+  setNotification,
+}) => {
   return (
     <div>
       {persons.map((person) => (
@@ -11,6 +16,8 @@ const Persons = ({ persons, setPersons }) => {
             person={person}
             persons={persons}
             setPersons={setPersons}
+            setSuccesMessage={setSuccesMessage}
+            setNotification={setNotification}
           />
         </div>
       ))}

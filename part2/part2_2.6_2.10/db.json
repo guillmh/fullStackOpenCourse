@@ -2,38 +2,13 @@
   "persons": [
     {
       "name": "Ada Lovelace",
-      "number": "235-127-31-22",
+      "number": "wdsdsdsd",
       "id": "2"
     },
     {
       "name": "Dan Abramov",
       "number": "12-43-234345",
       "id": "3"
-    },
-    {
-      "id": "e26a",
-      "name": "Andrew",
-      "number": "2751668122"
-    },
-    {
-      "id": "1fa0",
-      "name": "Pedro Lama",
-      "number": "234534344"
-    },
-    {
-      "id": "481b",
-      "name": "Roberta Dana",
-      "number": "232323"
-    },
-    {
-      "id": "9865",
-      "name": "Adan",
-      "number": "3243453434"
-    },
-    {
-      "id": "ab56",
-      "name": "Martin Nulutagua",
-      "number": "53453543"
     }
   ]
 }
