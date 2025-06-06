@@ -14,7 +14,9 @@ const ButtonDelete = ({
         await personsSV.deletePerson(person.id);
         setPersons(persons.filter((p) => p.id !== person.id));
       } catch {
-        setSuccesMessage(`el contacto ${person.name} ya no existe`);
+        setSuccesMessage(
+          `Information of ${person.name} has already been removed from server`
+        );
         setNotification("error");
         // Oculta el mensaje después de unos segundos
         setTimeout(() => setSuccesMessage(null), 5000);

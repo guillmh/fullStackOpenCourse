@@ -42,7 +42,7 @@ const PersonForm = ({
             }));
             // Muestra mensaje de éxito
             setSuccesMessage(
-              `El contacto de ${returnedPerson.name} fue actualizado exitosamente.`
+              `The contact was ${returnedPerson.name} updated successfully.`
             );
             //Agrega el estilo update
             setNotification("update");
@@ -63,7 +63,7 @@ const PersonForm = ({
       // Agrega el nuevo contacto al estado local
       setPersons(persons.concat(savedPerson));
       //Muestra una notificacionde operacion exitosa
-      setSuccesMessage(`El contacto ${response.name} se agrego exitosamente`);
+      setSuccesMessage(`Added ${response.name}`);
       //Agrega el estilo success
       setNotification("success");
       // Oculta el mensaje después de unos segundos
