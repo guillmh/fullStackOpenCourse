@@ -18,7 +18,7 @@ function App() {
     });
   }, []);
 
-  //Filtra los datos que coincidadn con la entrada del input
+  //Filtra los datos que coincidadn con la entrada del input, y se ejecuta cada vez que el valor del input cambia
   useEffect(() => {
     setFilteredCountries(
       countries.filter((country) =>
@@ -36,7 +36,6 @@ function App() {
     <>
       <div>
         <div>
-          Find countries{" "}
           <InputData inputValue={inputValue} handleChange={handleChange} />
         </div>
         <CountriesList filteredCountries={filteredCountries} />
