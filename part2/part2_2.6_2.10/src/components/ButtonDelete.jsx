@@ -1,5 +1,7 @@
 import React from "react";
 import personsSV from "../services/personsSV";
+import { Button } from "@radix-ui/themes";
+import { TrashIcon } from "@radix-ui/react-icons";
 
 const ButtonDelete = ({
   person,
@@ -24,7 +26,16 @@ const ButtonDelete = ({
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <Button
+      onClick={handleDelete}
+      variant="soft"
+      highContrast="true"
+      color="red"
+    >
+      <TrashIcon />
+    </Button>
+  );
 };
 
 export default ButtonDelete;

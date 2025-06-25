@@ -1,5 +1,7 @@
 import React from "react";
 import personsServices from "../services/personsSV";
+import { Flex, Heading, Text, TextField, Button } from "@radix-ui/themes";
+import { PersonIcon, MobileIcon, PlusIcon } from "@radix-ui/react-icons";
 
 const PersonForm = ({
   newName,
@@ -15,7 +17,9 @@ const PersonForm = ({
   const addPerson = (e) => {
     e.preventDefault();
     //Verifica si el nombre ya existe en el array
-    const existingPerson = persons.find((person) => person.name === newName);
+    const existingPerson = persons.find(
+      (person) => person.name.toLowerCase() === newName.toLowerCase()
+    );
     // Si existe, pregunta si se desea actualizar el número
     if (existingPerson) {
       if (
@@ -74,26 +78,47 @@ const PersonForm = ({
   };
 
   return (
-    <div>
+    <Flex gap="3" direction={"column"} m={"2"} p={"2"}>
+      <Heading as="h2" size={"4"} weight={"medium"}>
+        Add New Contact
+      </Heading>
       <form onSubmit={addPerson}>
-        <div>
-          name:{" "}
-          <input
+        <Flex gap={"2"} direction={"column"}>
+          <Text>Name</Text>
+          <TextField.Root
             name="newName"
             value={newName}
             onChange={handleChange}
+            placeholder="write your name"
             required
-          />
-        </div>
-        <div>
-          number:{" "}
-          <input name="newNumber" value={newNumber} onChange={handleChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
+          >
+            <TextField.Slot>
+              <PersonIcon height="18" width="18" />
+            </TextField.Slot>
+          </TextField.Root>
+        </Flex>
+        <Flex gap={"3"} direction={"column"} mt="3">
+          <Text>Number</Text>
+          <TextField.Root
+            name="newNumber"
+            value={newNumber}
+            onChange={handleChange}
+            placeholder="write your number"
+            required
+          >
+            <TextField.Slot>
+              <MobileIcon height="18" width="18" />
+            </TextField.Slot>
+          </TextField.Root>
+        </Flex>
+        <Flex justify={"end"} mt="3" gap={"3"}>
+          <Button type="submit" variant="soft" highContrast="true">
+            <PlusIcon />
+            add
+          </Button>
+        </Flex>
       </form>
-    </div>
+    </Flex>
   );
 };
 
